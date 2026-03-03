@@ -415,6 +415,17 @@ function Cases() {
             </div>
           ))}
         </div>
+        <div className="mt-12 text-center animate-on-scroll">
+          <a
+            href={VK_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-outline inline-flex items-center gap-2"
+          >
+            <Icon name="ExternalLink" size={16} />
+            Смотреть все кейсы в VK
+          </a>
+        </div>
       </div>
     </section>
   );
