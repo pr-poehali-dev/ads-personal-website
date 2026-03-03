@@ -145,7 +145,7 @@ function Hero() {
               style={{ opacity: 0, animation: "fade-up 0.7s 0.25s ease-out forwards" }}
             >Универсальное решение для вашего проекта</h1>
             <p
-              className="text-gray-500 text-lg leading-relaxed mb-10 max-w-md"
+              className="text-gray-500 text-lg leading-relaxed max-w-md my-[18px] py-[13px]"
               style={{ opacity: 0, animation: "fade-up 0.7s 0.4s ease-out forwards" }}
             >
               Привожу клиентов с онлайн-источников: Яндекс Директ, Телеграм, VK реклама и не только. Помогу настроить сквозную аналитику и опрозрачить входящий поток. Научу измерять результаты.
