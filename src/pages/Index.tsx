@@ -144,7 +144,7 @@ function Hero() {
             <h1
               className="hero-title text-left px-0 mx-0 my-0 py-0 text-6xl"
               style={{ opacity: 0, animation: "fade-up 0.7s 0.25s ease-out forwards" }}
-            >Универсальное решение для вашего проекта</h1>
+            >Специалист по рекламе из Сибири</h1>
             <div
               className="text-gray-500 text-lg leading-relaxed max-w-md px-0 mx-0 my-[13px] py-4 text-left font-normal flex flex-col gap-3"
               style={{ opacity: 0, animation: "fade-up 0.7s 0.4s ease-out forwards" }}
