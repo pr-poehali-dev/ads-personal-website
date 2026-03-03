@@ -185,8 +185,8 @@ function Hero() {
               <img
                 src={PHOTO_URL}
                 alt="Алексей Николотов"
-                className="relative w-72 md:w-80 object-cover object-top"
-                style={{ borderRadius: "20px", zIndex: 1, height: "360px" }}
+                className="relative w-72 md:w-[420px] object-cover object-top"
+                style={{ borderRadius: "20px", zIndex: 1, height: "520px" }}
               />
               <div
                 className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-black text-white text-xs font-bold px-5 py-2.5 rounded-full whitespace-nowrap"
