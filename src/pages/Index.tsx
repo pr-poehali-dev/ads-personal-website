@@ -333,34 +333,34 @@ function Services() {
 function Cases() {
   const cases = [
     {
-      tag: "Интернет-магазин",
-      title: "Магазин одежды",
-      result: "+340% продаж",
-      budget: "150 000 ₽/мес",
-      cpa: "CPA: 420 ₽",
+      tag: "Недвижимость",
+      title: "ЖК «Дюна» — риелтор",
+      result: "122 заявки",
+      budget: "Бюджет: 57 500 ₽",
+      cpa: "CPA: 471 ₽",
       bg: "#FEEB19",
       accent: "#000",
-      desc: "Запустили ретаргетинг на тёплую аудиторию + lookalike. За 3 месяца снизили стоимость заявки в 2,5 раза.",
+      desc: "Запустил VK рекламу, получили заявки по низкой цене и продажу, с которой риелтор получил 600 000 ₽ комиссии.",
     },
     {
       tag: "Образование",
-      title: "Онлайн-школа",
-      result: "×4.2 ROI",
-      budget: "80 000 ₽/мес",
-      cpa: "CPA: 280 ₽",
+      title: "Автошкола «Перекрёсток»",
+      result: "124 заявки",
+      budget: "Бюджет: 143 510 ₽",
+      cpa: "CPA: 941 ₽",
       bg: "#000",
       accent: "#FEEB19",
-      desc: "Настроили кампании на лидогенерацию через VK Ads. 180+ заявок в месяц при минимальной стоимости.",
+      desc: "Реклама в Яндекс Директ в низкий спрос. При тратах в 2 раза меньше конкурентов — результаты по CPA в 2,5 раза лучше.",
     },
     {
-      tag: "Услуги",
-      title: "Клиника красоты",
-      result: "×3.8 заявок",
-      budget: "60 000 ₽/мес",
-      cpa: "CPA: 650 ₽",
+      tag: "Промышленность",
+      title: "ИТЦ Сибирь",
+      result: "27 заявок",
+      budget: "Бюджет: 43 794 ₽",
+      cpa: "CPA: 1 622 ₽",
       bg: "#f5f5f5",
       accent: "#000",
-      desc: "Геотаргетинг + интересы. Заявки выросли в 3,8 раза относительно предыдущего подрядчика.",
+      desc: "Реклама в Яндекс Директ. Поисковая кампания на микроконверсиях принесла живые заявки по низкой стоимости для этой ниши.",
     },
   ];
 
@@ -380,7 +380,21 @@ function Cases() {
               key={c.title}
               className="case-card animate-on-scroll"
               data-delay={`${i * 120}`}
-              style={{ background: c.bg }}
+              style={{
+                background: c.bg,
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                cursor: "default",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.03)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = c.bg === "#000"
+                  ? "0 24px 60px rgba(254,235,25,0.25)"
+                  : "0 24px 60px rgba(0,0,0,0.18)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+              }}
             >
               <div className="p-8" style={{ color: c.accent }}>
                 <div className="text-xs font-bold uppercase tracking-widest mb-6 opacity-50">{c.tag}</div>
