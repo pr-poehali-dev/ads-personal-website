@@ -483,9 +483,11 @@ function Calculator() {
   const [calculated, setCalculated] = useState(false);
 
   const SERVICE_FEE = 30000;
+  const VAT = 0.22;
 
   const adBudget = cpa && leads ? Math.ceil(parseFloat(cpa) * parseInt(leads)) : 0;
-  const total = adBudget + SERVICE_FEE;
+  const adBudgetWithVat = Math.ceil(adBudget * (1 + VAT));
+  const total = adBudgetWithVat + SERVICE_FEE;
 
   const handleCalc = () => {
     if (!cpa || !leads) {
@@ -522,8 +524,8 @@ function Calculator() {
               <label className="block text-sm font-semibold text-white/60 mb-3">Рекламная площадка</label>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { val: "vk", label: "ВКонтакте" },
-                  { val: "vkads", label: "VK Ads" },
+                  { val: "vk", label: "VK реклама" },
+                  { val: "yandex", label: "Яндекс Директ" },
                 ].map((s) => (
                   <button
                     key={s.val}
@@ -599,10 +601,10 @@ function Calculator() {
                 <div className="text-xs font-bold text-white/40 mb-8 uppercase tracking-widest">Расчёт бюджета</div>
                 <div className="flex flex-col gap-5">
                   {[
-                    { label: "Площадка", value: source === "vk" ? "ВКонтакте" : "VK Ads" },
+                    { label: "Площадка", value: source === "vk" ? "VK реклама" : "Яндекс Директ" },
                     { label: "CPA (1 заявка)", value: `${parseFloat(cpa).toLocaleString("ru")} ₽` },
                     { label: "Заявок в месяц", value: `${parseInt(leads).toLocaleString("ru")} шт` },
-                    { label: "Рекламный бюджет", value: `${adBudget.toLocaleString("ru")} ₽` },
+                    { label: "Рекламный бюджет (с НДС 22%)", value: `${adBudgetWithVat.toLocaleString("ru")} ₽` },
                     { label: "Стоимость ведения", value: `${SERVICE_FEE.toLocaleString("ru")} ₽` },
                   ].map((row) => (
                     <div
@@ -620,6 +622,7 @@ function Calculator() {
                       {total.toLocaleString("ru")} ₽
                     </span>
                   </div>
+                  <p className="text-white/25 text-xs mt-1">* Рекламный бюджет указан с учётом НДС 22%</p>
                 </div>
                 <a
                   href={TG_LINK}
@@ -689,6 +692,84 @@ function Calculator() {
           </div>
         </div>
       )}
+    </section>
+  );
+}
+
+function Bonuses() {
+  const tools = [
+    {
+      name: "BotFAQtor",
+      desc: "Защищает от ботов и скликивания, помогает увеличить конверсию и снизить стоимость лида",
+      economy: "Экономия 10 000 ₽/мес",
+      bg: "#fff",
+    },
+    {
+      name: "Марквиз",
+      desc: "Онлайн-конструктор квизов, опросов, лендингов, форм контактов и не только",
+      economy: "Экономия от 2 000 ₽/мес",
+      bg: "#fff",
+    },
+    {
+      name: "Callibri",
+      desc: "Автоматизация работы с лидами на всех этапах: коллтрекинг, email-трекинг и попапы",
+      economy: null,
+      bg: "#fff",
+    },
+    {
+      name: "LOKTAR",
+      desc: "Автоматизация рутинных операций по таргетированной рекламе во ВКонтакте",
+      economy: "Экономия 35 880 ₽/год",
+      bg: "#fff",
+    },
+  ];
+
+  return (
+    <section className="section-padding bg-white">
+      <div className="container-narrow">
+        <div className="mb-12 animate-on-scroll">
+          <div className="tag mb-4">Бонусы</div>
+          <h2 className="section-title mb-4">Помогаю не только заработать,<br /><span className="yellow-line">но и сэкономить</span></h2>
+          <p className="text-gray-500 text-lg leading-relaxed max-w-2xl mt-6">
+            Работая со мной при тратах бюджета от 20 000 рублей вы получите бесплатно доступ к маркетплейсу инструментов, например:
+          </p>
+        </div>
+        <div className="grid md:grid-cols-4 gap-5">
+          {tools.map((tool) => (
+            <div
+              key={tool.name}
+              className="rounded-2xl p-6 flex flex-col gap-3 animate-on-scroll"
+              style={{
+                border: "1px solid #e5e5e5",
+                transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                cursor: "default",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.04)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 20px 50px rgba(254,235,25,0.3)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "#FEEB19";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "#e5e5e5";
+              }}
+            >
+              <div className="font-black text-lg">{tool.name}</div>
+              <p className="text-gray-500 text-sm leading-relaxed flex-1">{tool.desc}</p>
+              {tool.economy && (
+                <div
+                  className="text-xs font-bold px-3 py-1.5 rounded-full w-fit"
+                  style={{ background: "#FEEB19", color: "#000" }}
+                >
+                  {tool.economy}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <p className="text-gray-400 text-sm mt-6 animate-on-scroll">И другие сервисы</p>
+      </div>
     </section>
   );
 }
@@ -813,6 +894,7 @@ export default function Index() {
       <Cases />
       <Reviews />
       <Calculator />
+      <Bonuses />
       <Contacts />
       <Footer />
     </div>
