@@ -1,4 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
+
+declare global { interface Window { ym?: (id: number, action: string, goal: string) => void; } }
+const ymGoal = (goal: string) => { if (typeof window !== "undefined" && window.ym) window.ym(107132209, "reachGoal", goal); };
 import Icon from "@/components/ui/icon";
 import {
   Carousel,
@@ -119,6 +122,7 @@ function Navbar() {
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-flex btn-primary text-sm py-3 px-6"
+          onClick={() => ymGoal("Переход Консультация")}
         >
           Консультация
         </a>
@@ -133,7 +137,7 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm py-3 px-6 w-fit">
+          <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary text-sm py-3 px-6 w-fit" onClick={() => ymGoal("Переход Консультация")}>
             Консультация
           </a>
         </div>
@@ -171,7 +175,7 @@ function Hero() {
               className="flex flex-wrap gap-4"
               style={{ opacity: 0, animation: "fade-up 0.7s 0.55s ease-out forwards" }}
             >
-              <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary">
+              <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => ymGoal("Переход в Телеграм")}>
                 <Icon name="MessageCircle" size={18} />
                 Написать в Telegram
               </a>
@@ -489,7 +493,7 @@ function Services() {
           ))}
         </div>
         <div className="mt-12 text-center animate-on-scroll">
-          <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary">
+          <a href={TG_LINK} target="_blank" rel="noopener noreferrer" className="btn-primary" onClick={() => ymGoal("Переход в Телеграм")}>
             <Icon name="MessageCircle" size={18} />
             Обсудить проект
           </a>
@@ -599,6 +603,7 @@ function Cases() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline inline-flex items-center gap-2"
+            onClick={() => ymGoal("Переход в VK")}
           >
             <Icon name="ExternalLink" size={16} />
             Смотреть все кейсы в VK
@@ -763,7 +768,7 @@ function Calculator() {
 
             <div className="flex gap-3">
               <button
-                onClick={handleCalc}
+                onClick={() => { handleCalc(); ymGoal("Посчитал бюджет"); }}
                 className="flex-1 py-4 font-bold text-black rounded-lg transition-all hover:opacity-90 active:scale-95"
                 style={{ background: "#FEEB19" }}
               >
@@ -819,6 +824,7 @@ function Calculator() {
                   rel="noopener noreferrer"
                   className="mt-8 w-full flex items-center justify-center gap-2 py-4 font-bold text-black rounded-lg transition-all hover:opacity-90"
                   style={{ background: "#FEEB19" }}
+                  onClick={() => ymGoal("Переход в Телеграм")}
                 >
                   <Icon name="MessageCircle" size={18} />
                   Обсудить в Telegram
@@ -865,6 +871,7 @@ function Calculator() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-primary justify-center w-full"
+                onClick={() => ymGoal("Переход в Телеграм")}
               >
                 <Icon name="MessageCircle" size={18} />
                 Написать в Telegram
@@ -989,6 +996,7 @@ function Contacts() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-5 rounded-xl hover-lift group"
                   style={{ border: "1px solid #f0f0f0" }}
+                  onClick={() => ymGoal(s.label === "Telegram" ? "Переход в Телеграм" : "Переход в VK")}
                 >
                   <div className="p-3 rounded-xl" style={{ background: "#FEEB19" }}>
                     <Icon name={s.icon} size={20} />
