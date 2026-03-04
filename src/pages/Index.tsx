@@ -1,5 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Icon from "@/components/ui/icon";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 
 const PHOTO_URL =
   "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/1d27eeac-7db6-458f-b2bf-43ffdf5d69a8.png";
@@ -198,6 +206,135 @@ function Hero() {
           </div>
         </div>
       </div>
+    </section>
+  );
+}
+
+const CERTIFICATES = [
+  {
+    url: "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/2ac02c1f-1403-4bd3-83af-ebcc0cf7786d.jpg",
+    title: "Диплом бакалавра",
+    subtitle: "СибГУ им. Решетнёва · Реклама и связи с общественностью · 2019",
+  },
+  {
+    url: "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/d4ff8f48-d784-4e46-8d39-089654836694.jpg",
+    title: "Диплом о профессиональной переподготовке",
+    subtitle: "Московский Политех · Специалист по интернет-маркетингу · 2025",
+  },
+  {
+    url: "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/5ce99a05-bd8e-440f-8917-55e4741cf0c7.jpg",
+    title: "Сертификат специалиста Яндекс Директ",
+    subtitle: "Яндекс · Базовый уровень · Активен до 13.11.2025",
+  },
+  {
+    url: "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/7c95c396-e130-4cef-9a50-f6123fa67748.jpg",
+    title: "Сертификат специалиста по медийной рекламе",
+    subtitle: "Яндекс · Медийная реклама · До 12.11.2025",
+  },
+  {
+    url: "https://cdn.poehali.dev/projects/d8daede3-cd33-47b5-afe6-fe49f35fc4fe/bucket/f53f9dd5-a74f-4064-8342-adc610be59b6.jpg",
+    title: "Сертификат VK Реклама",
+    subtitle: "VK Бизнес · Сертифицированный специалист · До 07.11.2025",
+  },
+];
+
+function Certificates() {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+  const [lightbox, setLightbox] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!api) return;
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+    api.on("select", () => setCurrent(api.selectedScrollSnap()));
+  }, [api]);
+
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === "Escape") setLightbox(null);
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [onKeyDown]);
+
+  return (
+    <section className="section-padding bg-white">
+      <div className="container-narrow">
+        <div className="text-center mb-10 animate-on-scroll">
+          <span className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-3 block">Документы</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-black">Сертификаты и дипломы</h2>
+        </div>
+
+        <div className="animate-on-scroll" data-delay="100">
+          <Carousel
+            setApi={setApi}
+            opts={{ align: "center", loop: true }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {CERTIFICATES.map((cert, i) => (
+                <CarouselItem
+                  key={i}
+                  className="pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[35%] transition-all duration-300"
+                  style={{ transform: i === current ? "scale(1)" : "scale(0.92)", opacity: i === current ? 1 : 0.6, transition: "all 0.35s ease" }}
+                >
+                  <div
+                    className="rounded-2xl overflow-hidden shadow-lg cursor-zoom-in bg-gray-50"
+                    onClick={() => setLightbox(cert.url)}
+                  >
+                    <img
+                      src={cert.url}
+                      alt={cert.title}
+                      className="w-full object-contain max-h-[420px]"
+                    />
+                    <div className="px-4 py-3">
+                      <div className="font-semibold text-sm text-black leading-tight">{cert.title}</div>
+                      <div className="text-xs text-gray-400 mt-0.5">{cert.subtitle}</div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex items-center justify-center gap-4 mt-6">
+              <CarouselPrevious className="static translate-y-0 bg-black text-white hover:bg-black/80 border-none" />
+              <div className="flex gap-2">
+                {Array.from({ length: count }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => api?.scrollTo(i)}
+                    className="w-2 h-2 rounded-full transition-all duration-300"
+                    style={{ background: i === current ? "#FEEB19" : "rgba(0,0,0,0.2)" }}
+                  />
+                ))}
+              </div>
+              <CarouselNext className="static translate-y-0 bg-black text-white hover:bg-black/80 border-none" />
+            </div>
+          </Carousel>
+        </div>
+      </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white"
+            onClick={() => setLightbox(null)}
+          >
+            <Icon name="X" size={32} />
+          </button>
+          <img
+            src={lightbox}
+            alt="Документ"
+            className="max-w-[92vw] max-h-[90vh] object-contain rounded-xl shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }
@@ -906,6 +1043,7 @@ export default function Index() {
       <CookieBanner />
       <Navbar />
       <Hero />
+      <Certificates />
       <About />
       <Services />
       <Cases />
