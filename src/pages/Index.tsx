@@ -272,40 +272,55 @@ function Certificates() {
   }, [onKeyDown]);
 
   return (
-    <section id="certificates" className="section-padding bg-white">
+    <section id="certificates" className="section-padding bg-white overflow-hidden">
       <div className="container-narrow">
         <div className="text-center mb-10 animate-on-scroll">
           <span className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-3 block">Документы</span>
           <h2 className="text-3xl md:text-4xl font-bold text-black">Сертификаты и дипломы</h2>
         </div>
 
-        <div className="animate-on-scroll" data-delay="100">
+        <div className="animate-on-scroll" data-delay="100" style={{ padding: "20px 0 30px" }}>
           <Carousel
             setApi={setApi}
             opts={{ align: "center", loop: true }}
             className="w-full"
           >
-            <CarouselContent className="-ml-4">
+            <CarouselContent className="-ml-4" style={{ overflow: "visible" }}>
               {CERTIFICATES.map((cert, i) => (
                 <CarouselItem
                   key={i}
-                  className="pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[35%]"
-                  style={{ opacity: i === current ? 1 : 0.55, transition: "all 0.35s ease", transform: i === current ? "scale(1)" : "scale(0.93)" }}
+                  className="pl-4 basis-[80%] sm:basis-[55%] md:basis-[42%] lg:basis-[32%]"
+                  style={{ overflow: "visible" }}
                 >
                   <div
-                    className="rounded-2xl shadow-lg cursor-zoom-in bg-gray-50 transition-all duration-300 hover:shadow-2xl hover:shadow-black/25 group"
+                    className="cursor-zoom-in group"
+                    style={{
+                      transition: "all 0.4s ease",
+                      transform: i === current ? "scale(1)" : "scale(0.82)",
+                      opacity: i === current ? 1 : 0.5,
+                      transformOrigin: "center center",
+                    }}
                     onClick={() => setLightbox(cert.url)}
                   >
-                    <div className="overflow-hidden rounded-t-2xl" style={{ height: "380px" }}>
-                      <img
-                        src={cert.url}
-                        alt={cert.title}
-                        className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="px-4 py-3">
-                      <div className="font-semibold text-sm text-black leading-tight">{cert.title}</div>
-                      <div className="text-xs text-gray-400 mt-0.5">{cert.subtitle}</div>
+                    <div
+                      className="rounded-2xl bg-gray-50 transition-shadow duration-300"
+                      style={{
+                        boxShadow: i === current
+                          ? "0 20px 60px rgba(0,0,0,0.18)"
+                          : "0 4px 16px rgba(0,0,0,0.08)",
+                      }}
+                    >
+                      <div className="overflow-hidden rounded-t-2xl" style={{ height: "380px" }}>
+                        <img
+                          src={cert.url}
+                          alt={cert.title}
+                          className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="px-4 py-3">
+                        <div className="font-semibold text-sm text-black leading-tight">{cert.title}</div>
+                        <div className="text-xs text-gray-400 mt-0.5">{cert.subtitle}</div>
+                      </div>
                     </div>
                   </div>
                 </CarouselItem>
