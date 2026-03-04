@@ -244,7 +244,7 @@ function About() {
                 <div className="mb-3 p-2.5 rounded-lg w-fit" style={{ background: "#FEEB19" }}>
                   <Icon name={item.icon} size={18} color="#000" />
                 </div>
-                <div className="font-bold mb-2">{item.title}</div>
+                <div className="font-bold mb-2 text-xs sm:text-base leading-tight">{item.title}</div>
                 <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{item.text}</div>
               </div>
             ))}
