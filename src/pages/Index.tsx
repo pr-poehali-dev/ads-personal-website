@@ -543,47 +543,56 @@ function Cases() {
             <span className="yellow-line">которые говорят сами за себя</span>
           </h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-6">
-          {cases.map((c, i) => (
-            <div
-              key={c.title}
-              className="case-card animate-on-scroll"
-              data-delay={`${i * 120}`}
-              style={{
-                background: c.bg,
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                cursor: "default",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1.03)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = c.bg === "#000"
-                  ? "0 24px 60px rgba(254,235,25,0.25)"
-                  : "0 24px 60px rgba(0,0,0,0.18)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
-                (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
-              }}
-            >
-              <div className="p-8" style={{ color: c.accent }}>
-                <div className="text-xs font-bold uppercase tracking-widest mb-6 opacity-50">{c.tag}</div>
-                <h3 className="text-2xl font-black mb-2">{c.title}</h3>
-                <div className="text-5xl font-black mb-1" style={{ color: c.bg === "#FEEB19" ? "#000" : "#FEEB19" }}>
-                  {c.result}
-                </div>
-                <p className="text-sm leading-relaxed mt-4 mb-6" style={{ opacity: 0.55 }}>{c.desc}</p>
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          className="w-full animate-on-scroll"
+        >
+          <CarouselContent className="-ml-4">
+            {cases.map((c, i) => (
+              <CarouselItem key={c.title} className="pl-4 md:basis-1/3">
                 <div
-                  className="flex gap-3 text-xs font-semibold pt-4 flex-wrap"
-                  style={{ borderTop: `1px solid ${c.bg === "#000" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`, opacity: 0.6 }}
+                  className="case-card h-full"
+                  style={{
+                    background: c.bg,
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    cursor: "default",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1.03)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = c.bg === "#000"
+                      ? "0 24px 60px rgba(254,235,25,0.25)"
+                      : "0 24px 60px rgba(0,0,0,0.18)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLDivElement).style.transform = "scale(1)";
+                    (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
+                  }}
                 >
-                  <span>{c.budget}</span>
-                  <span>·</span>
-                  <span>{c.cpa}</span>
+                  <div className="p-8" style={{ color: c.accent }}>
+                    <div className="text-xs font-bold uppercase tracking-widest mb-6 opacity-50">{c.tag}</div>
+                    <h3 className="text-2xl font-black mb-2">{c.title}</h3>
+                    <div className="text-5xl font-black mb-1" style={{ color: c.bg === "#FEEB19" ? "#000" : "#FEEB19" }}>
+                      {c.result}
+                    </div>
+                    <p className="text-sm leading-relaxed mt-4 mb-6" style={{ opacity: 0.55 }}>{c.desc}</p>
+                    <div
+                      className="flex gap-3 text-xs font-semibold pt-4 flex-wrap"
+                      style={{ borderTop: `1px solid ${c.bg === "#000" ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`, opacity: 0.6 }}
+                    >
+                      <span>{c.budget}</span>
+                      <span>·</span>
+                      <span>{c.cpa}</span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <CarouselPrevious className="static translate-y-0" />
+            <CarouselNext className="static translate-y-0" />
+          </div>
+        </Carousel>
         <div className="mt-12 text-center animate-on-scroll">
           <a
             href={VK_LINK}
