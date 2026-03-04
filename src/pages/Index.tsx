@@ -59,7 +59,7 @@ function CookieBanner() {
       <div className="bg-black text-white sm:rounded-xl px-6 py-5 flex flex-row items-center gap-4 shadow-2xl border-t border-white/10 sm:border-0">
         <p className="text-sm text-white/70 flex-1 leading-relaxed">
           Используя сайт, вы соглашаетесь на{" "}
-          <span className="underline cursor-pointer" style={{ color: "#FEEB19" }}>обработку персональных данных</span>.
+          <a href="https://docs.google.com/document/d/1uFpCBLW2_61i4GgncqMK_nA8yw5xfg9Av4JGq9NZ1rY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: "#FEEB19" }}>обработку персональных данных</a>.
         </p>
         <button
           onClick={accept}
@@ -460,6 +460,13 @@ function Services() {
       price: "по договорённости",
       desc: "Решение по дизайну для вашей компании от логотипа до графических баннеров и ИИ видео.",
       features: ["Работа с ИИ", "Графический дизайн", "Полиграфия", "Логотип"],
+    },
+    {
+      icon: "PenTool",
+      title: "Создание логотипа",
+      price: "от 20 000 ₽",
+      desc: "Разработка уникального визуального символа бренда, который формирует узнаваемость компании и усиливает доверие к бизнесу.",
+      features: ["Анализ ниши и позиционирования", "Разработка концепции логотипа", "Создание нескольких вариантов дизайна"],
     },
   ];
 
