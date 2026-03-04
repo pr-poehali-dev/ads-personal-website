@@ -9,7 +9,7 @@ const VK_LINK = "https://vk.com/niggalotovads";
 
 function useScrollAnimation() {
   useEffect(() => {
-    const els = document.querySelectorAll(".animate-on-scroll, .animate-on-scroll-left");
+    const els = document.querySelectorAll(".animate-on-scroll, .animate-on-scroll-left, .animate-on-scroll-right, .animate-on-scroll-zoom, .animate-on-scroll-flip");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -207,7 +207,7 @@ function About() {
     <section id="about" className="section-padding bg-black text-white">
       <div className="container-narrow">
         <div className="grid md:grid-cols-2 gap-16 items-center">
-          <div className="animate-on-scroll">
+          <div className="animate-on-scroll-left">
             <div className="tag mb-6">Обо мне</div>
             <h2 className="section-title mb-6">
               Помогаю бизнесу<br />
@@ -229,7 +229,7 @@ function About() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5 animate-on-scroll" data-delay="150">
+          <div className="grid grid-cols-2 gap-5 animate-on-scroll-right" data-delay="150">
             {[
               { icon: "Target", title: "Профессиональный подход", text: "Нахожу эффективные связки, которые приводят к стабильным результатам KPI" },
               { icon: "TrendingUp", title: "Контроль", text: "Постоянный контроль рекламных кампаний и внесение корректировок для достижения планов" },
@@ -303,7 +303,7 @@ function Services() {
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           {services.map((s, i) => (
-            <div key={s.title} className="card-service animate-on-scroll" data-delay={`${i * 100}`}>
+            <div key={s.title} className="card-service animate-on-scroll-zoom" data-delay={`${i * 100}`}>
               <div className="flex items-start justify-between mb-6">
                 <div className="p-3 rounded-lg" style={{ background: "#FEEB19" }}>
                   <Icon name={s.icon} size={22} />
@@ -382,8 +382,8 @@ function Cases() {
           {cases.map((c, i) => (
             <div
               key={c.title}
-              className="case-card animate-on-scroll"
-              data-delay={`${i * 120}`}
+              className="case-card animate-on-scroll-flip"
+              data-delay={`${i * 130}`}
               style={{
                 background: c.bg,
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -471,7 +471,7 @@ function Reviews() {
         </div>
         <div className="grid md:grid-cols-2 gap-6">
           {reviews.map((r, i) => (
-            <div key={r.name} className="review-card animate-on-scroll" data-delay={`${i * 100}`}>
+            <div key={r.name} className={`review-card ${i % 2 === 0 ? "animate-on-scroll-left" : "animate-on-scroll-right"}`} data-delay={`${i * 100}`}>
               <div className="flex items-center gap-1 mb-5">
                 {[1,2,3,4,5].map((j) => (
                   <Icon key={j} name="Star" size={16} style={{ color: "#FEEB19", fill: "#FEEB19" }} />
@@ -534,7 +534,7 @@ function Calculator() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          <div className="animate-on-scroll flex flex-col gap-6">
+          <div className="animate-on-scroll-left flex flex-col gap-6">
             <div>
               <label className="block text-sm font-semibold text-white/60 mb-3">Рекламная площадка</label>
               <div className="grid grid-cols-2 gap-3">
@@ -607,7 +607,7 @@ function Calculator() {
             </div>
           </div>
 
-          <div className="animate-on-scroll" data-delay="150">
+          <div className="animate-on-scroll-right" data-delay="150">
             {calculated ? (
               <div
                 className="rounded-2xl p-8"
@@ -750,10 +750,11 @@ function Bonuses() {
           </p>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
-          {tools.map((tool) => (
+          {tools.map((tool, i) => (
             <div
               key={tool.name}
-              className="rounded-2xl p-6 flex flex-col gap-3 animate-on-scroll"
+              className="rounded-2xl p-6 flex flex-col gap-3 animate-on-scroll-zoom"
+              data-delay={`${i * 80}`}
               style={{
                 border: "1px solid #e5e5e5",
                 transition: "transform 0.3s ease, box-shadow 0.3s ease",
@@ -799,7 +800,7 @@ function Contacts() {
     <section id="contacts" className="section-padding bg-white">
       <div className="container-narrow">
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          <div className="animate-on-scroll">
+          <div className="animate-on-scroll-left">
             <div className="tag mb-4">Контакты</div>
             <h2 className="section-title mb-6">
               Готовы к<br />
@@ -832,7 +833,7 @@ function Contacts() {
           </div>
 
           <div
-            className="rounded-2xl p-10 animate-on-scroll"
+            className="rounded-2xl p-10 animate-on-scroll-right"
             data-delay="150"
             style={{ background: "#FEEB19" }}
           >
