@@ -52,8 +52,8 @@ function CookieBanner() {
 
   if (!visible) return null;
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-xl animate-fade-up">
-      <div className="bg-black text-white rounded-xl px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center gap-4 shadow-2xl">
+    <div className="fixed bottom-0 left-0 right-0 z-50 sm:bottom-6 sm:left-1/2 sm:-translate-x-1/2 sm:w-[92%] sm:max-w-xl animate-fade-up">
+      <div className="bg-black text-white sm:rounded-xl px-6 py-5 flex flex-row items-center gap-4 shadow-2xl border-t border-white/10 sm:border-0">
         <p className="text-sm text-white/70 flex-1 leading-relaxed">
           Используя сайт, вы соглашаетесь на{" "}
           <span className="underline cursor-pointer" style={{ color: "#FEEB19" }}>обработку персональных данных</span>.
