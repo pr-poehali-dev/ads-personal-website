@@ -288,18 +288,20 @@ function Certificates() {
               {CERTIFICATES.map((cert, i) => (
                 <CarouselItem
                   key={i}
-                  className="pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[35%] transition-all duration-300"
-                  style={{ transform: i === current ? "scale(1)" : "scale(0.92)", opacity: i === current ? 1 : 0.6, transition: "all 0.35s ease" }}
+                  className="pl-4 basis-[85%] sm:basis-[60%] md:basis-[45%] lg:basis-[35%]"
+                  style={{ opacity: i === current ? 1 : 0.55, transition: "all 0.35s ease", transform: i === current ? "scale(1)" : "scale(0.93)" }}
                 >
                   <div
-                    className="rounded-2xl overflow-hidden shadow-lg cursor-zoom-in bg-gray-50 transition-all duration-300 hover:scale-[1.04] hover:shadow-2xl hover:shadow-black/20"
+                    className="rounded-2xl shadow-lg cursor-zoom-in bg-gray-50 transition-all duration-300 hover:shadow-2xl hover:shadow-black/25 group"
                     onClick={() => setLightbox(cert.url)}
                   >
-                    <img
-                      src={cert.url}
-                      alt={cert.title}
-                      className="w-full object-contain max-h-[420px]"
-                    />
+                    <div className="overflow-hidden rounded-t-2xl" style={{ height: "380px" }}>
+                      <img
+                        src={cert.url}
+                        alt={cert.title}
+                        className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
                     <div className="px-4 py-3">
                       <div className="font-semibold text-sm text-black leading-tight">{cert.title}</div>
                       <div className="text-xs text-gray-400 mt-0.5">{cert.subtitle}</div>
