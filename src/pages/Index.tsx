@@ -84,6 +84,7 @@ function Navbar() {
     { label: "Обо мне", href: "#about" },
     { label: "Услуги", href: "#services" },
     { label: "Кейсы", href: "#cases" },
+    { label: "Сертификаты", href: "#certificates" },
     { label: "Отзывы", href: "#reviews" },
     { label: "Калькулятор", href: "#calculator" },
     { label: "Контакты", href: "#contacts" },
@@ -271,7 +272,7 @@ function Certificates() {
   }, [onKeyDown]);
 
   return (
-    <section className="section-padding bg-white">
+    <section id="certificates" className="section-padding bg-white">
       <div className="container-narrow">
         <div className="text-center mb-10 animate-on-scroll">
           <span className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-3 block">Документы</span>
