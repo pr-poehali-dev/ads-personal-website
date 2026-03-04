@@ -394,7 +394,7 @@ function About() {
               ))}
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-5 animate-on-scroll" data-delay="150">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 animate-on-scroll" data-delay="150">
             {[
               { icon: "Target", title: "Экспертный подход", text: "Нахожу эффективные связки, которые приводят к стабильным результатам KPI" },
               { icon: "TrendingUp", title: "Контроль", text: "Постоянный контроль рекламных кампаний и внесение корректировок для достижения планов" },
@@ -409,7 +409,7 @@ function About() {
                 <div className="mb-3 p-2.5 rounded-lg w-fit" style={{ background: "#FEEB19" }}>
                   <Icon name={item.icon} size={18} color="#000" />
                 </div>
-                <div className="font-bold mb-2 text-xs sm:text-base leading-tight">{item.title}</div>
+                <div className="font-bold mb-2 text-base leading-tight">{item.title}</div>
                 <div className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>{item.text}</div>
               </div>
             ))}
