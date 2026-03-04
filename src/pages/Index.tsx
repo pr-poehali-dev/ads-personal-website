@@ -822,9 +822,7 @@ function Calculator() {
               >
                 <div>
                   <div className="text-6xl font-black mb-4" style={{ color: "#FEEB19" }}>?</div>
-                  <p className="text-white/40 text-lg leading-relaxed">
-                    Заполните форму слева, чтобы увидеть расчёт рекламного бюджета под вашу задачу.
-                  </p>
+                  <p className="text-white/40 text-lg leading-relaxed">Заполните форму, чтобы увидеть расчёт рекламного бюджета под вашу задачу.</p>
                 </div>
                 <p className="text-white/25 text-sm mt-8">
                   Не знаете CPA? Нажмите «Рассчитать» — я помогу определить его на бесплатной консультации.
